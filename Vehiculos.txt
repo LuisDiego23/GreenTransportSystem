@@ -1,0 +1,17 @@
+IF OBJECT_ID('Vehiculos', 'U') IS NOT NULL DROP TABLE Vehiculos;
+
+-- Tabla Vehículos
+CREATE TABLE Vehiculos (
+    vehiculo_id INT PRIMARY KEY IDENTITY(1,1),
+    patente VARCHAR(20) UNIQUE NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    capacidad INT NOT NULL,
+    disponible BIT NOT NULL -- 1: Activo/Disponible, 0: En Mantenimiento
+
+INSERT INTO Vehiculos (patente, modelo, capacidad, disponible) VALUES
+('ABC101', 'Furgón Eléctrico', 1000, 1), -- vehiculo_id = 1 (Activo)
+('DEF202', 'Camión Híbrido', 5000, 1),   -- vehiculo_id = 2 (Activo)
+('GHI303', 'Van Compacta', 500, 0),      -- vehiculo_id = 3 (En Mant. - Antiguo)
+('JKL404', 'Furgón Pequeño', 800, 1);    -- vehiculo_id = 4 (Activo - Sin Mantenimiento reciente)
+
+);
