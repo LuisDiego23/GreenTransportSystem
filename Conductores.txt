@@ -1,0 +1,14 @@
+IF OBJECT_ID('Conductores', 'U') IS NOT NULL DROP TABLE Conductores;
+
+-- Tabla Conductores
+CREATE TABLE Conductores (
+    conductor_id INT PRIMARY KEY IDENTITY(1,1),
+    nombre VARCHAR(100) NOT NULL,
+    licencia VARCHAR(50) UNIQUE NOT NULL
+
+INSERT INTO Conductores (nombre, licencia) VALUES
+('Pedro Solís', 'A1-12345'), -- conductor_id = 1
+('María López', 'B2-67890'), -- conductor_id = 2
+('Luis Castro', 'C3-11223'); -- conductor_id = 3
+
+);

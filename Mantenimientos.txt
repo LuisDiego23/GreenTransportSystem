@@ -1,0 +1,23 @@
+IF OBJECT_ID('Mantenimientos', 'U') IS NOT NULL DROP TABLE Mantenimientos;
+
+-- Tabla Mantenimientos
+CREATE TABLE Mantenimientos (
+    mantenimiento_id INT PRIMARY KEY IDENTITY(1,1),
+    vehiculo_id INT NOT NULL,
+    conductor_id INT NULL, -- El conductor que reporta o llevó el vehículo
+    fecha_inicio DATE NOT NULL,
+    fecha_fin DATE NULL, -- NULO si está en curso
+    costo DECIMAL(10, 2) NULL,
+    descripcion VARCHAR(255),
+    FOREIGN KEY (vehiculo_id) REFERENCES Vehiculos(vehiculo_id),
+    FOREIGN KEY (conductor_id) REFERENCES Conductores(conductor_id)
+);
+
+-- Datos de Mantenimientos:
+INSERT INTO Mantenimientos (vehiculo_id, conductor_id, fecha_inicio, fecha_fin, costo, descripcion) VALUES
+-- Mantenimiento ANTIGUO (hace 3 meses)
+(1, 1, DATEADD(month, -3, GETDATE()), DATEADD(month, -3, GETDATE()) + 2, 350.00, 'Revisión trimestral, cambio de filtros.'),
+-- Mantenimiento RECIENTE (hace 2 semanas)
+(2, 2, DATEADD(week, -2, GETDATE()), DATEADD(week, -2, GETDATE()) + 3, 750.00, 'Reparación de suspensión.'),
+-- Mantenimiento EN CURSO (simulado del vehículo 3)
+(3, NULL, DATEADD(day, -5, GETDATE()), NULL, NULL, 'Cambio de batería y revisión eléctrica.');
